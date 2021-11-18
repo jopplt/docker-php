@@ -21,6 +21,8 @@ RUN apk --update add --no-cache --virtual .build-deps \
 
 FROM prod AS dev
 ARG COMPOSER_VERSION=2.1.12
+COPY config/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+COPY config/php.ini /usr/local/etc/php/php.ini 
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies
     build-base \

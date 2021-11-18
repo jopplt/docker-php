@@ -11,6 +11,13 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
+      - name: Declare variables
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
       - name: Check out the repo
         uses: actions/checkout@v2
       
@@ -36,6 +43,6 @@ jobs:
           target: prod
           push: true
           tags: |
-            jopplt/php:${GITHUB_SHA}
+            jopplt/php:${{ steps.vars.outputs.sha_short }}
             jopplt/php:7.4-fpm
             jopplt/php:latest
