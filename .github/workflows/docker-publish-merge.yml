@@ -26,8 +26,8 @@ jobs:
           context: .
           target: dev
           push: true
-          tags:
-            - jopplt/php:7.4-fpm-dev
+          tags: |
+            jopplt/php:7.4-fpm-dev
 
       - name: Build and push Docker image (prod)
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
@@ -35,7 +35,7 @@ jobs:
           context: .
           target: prod
           push: true
-          tags:
-            - jopplt/php:${{ GITHUB_SHA }}
-            - jopplt/php:7.4-fpm
-            - jopplt/php:latest
+          tags: |
+            jopplt/php:${{ GITHUB_SHA }}
+            jopplt/php:7.4-fpm
+            jopplt/php:latest
