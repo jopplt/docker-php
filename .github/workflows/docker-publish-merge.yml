@@ -36,6 +36,6 @@ jobs:
           target: prod
           push: true
           tags: |
-            jopplt/php:${{ GITHUB_SHA }}
+            jopplt/php:${GITHUB_SHA}
             jopplt/php:7.4-fpm
             jopplt/php:latest
