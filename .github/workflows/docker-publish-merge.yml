@@ -14,9 +14,11 @@ jobs:
       - name: Declare variables
         id: vars
         shell: bash
-        run: |
-          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-          echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo ::set-output name=sha_short::$(git rev-parse --short HEAD)
+
+      - name: Test vars
+        shell: bash
+        run: echo ${{ steps.vars.outputs.sha_short }}
 
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -27,15 +29,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Build and push Docker image (dev)
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: .
-          target: dev
-          push: true
-          tags: |
-            jopplt/php:7.4-fpm-dev
-
       - name: Build and push Docker image (prod)
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
@@ -46,3 +39,12 @@ jobs:
             jopplt/php:${{ steps.vars.outputs.sha_short }}
             jopplt/php:7.4-fpm
             jopplt/php:latest
+
+      - name: Build and push Docker image (dev)
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: .
+          target: dev
+          push: true
+          tags: |
+            jopplt/php:7.4-fpm-dev
