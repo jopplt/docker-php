@@ -15,9 +15,6 @@ RUN apk --update add --no-cache --virtual .build-deps \
     opcache \
     && pecl install -o -f redis \
     && docker-php-ext-enable redis \
-    && apk --update add --no-cache \
-    # Aditional packages
-    npm \
     # Cleanup
     && apk del .build-deps \
     && rm -rf /tmp/pear /var/cache/apk/*
