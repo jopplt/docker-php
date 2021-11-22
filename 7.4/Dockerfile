@@ -30,7 +30,7 @@ FROM base AS newrelic
 ARG NEW_RELIC_AGENT_VERSION
 #ARG NEW_RELIC_LICENSE_KEY
 #ARG NEW_RELIC_APPNAME
-VOLUME config/newrelic.ini /usr/local/etc/php/conf.d/newrelic.ini
+VOLUME /usr/local/etc/php/conf.d/newrelic.ini
 RUN apk --update add --no-cache \
     # required by newrelic agent
     libstdc++ gcompat
