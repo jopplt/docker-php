@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine AS base
+FROM php:7.4-fpm-alpine AS min
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
@@ -21,6 +21,13 @@ RUN apk --update add --no-cache --virtual .build-deps \
     # Cleanup
     && apk del .build-deps \
     && rm -rf /tmp/pear /var/cache/apk/*
+
+FROM min AS base
+RUN apk --update add --no-cache \
+    # Aditional packages
+    npm \
+    # Cleanup
+    && rm -rf /var/cache/apk/*
 
 FROM base AS newrelic
 ARG NEW_RELIC_AGENT_VERSION
