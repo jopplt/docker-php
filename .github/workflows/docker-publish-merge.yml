@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: [7.4][base] Build and push Docker image
+      - name: "[7.4][base] Build and push Docker image"
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: 7.4
@@ -29,7 +29,7 @@ jobs:
           tags: |
             jopplt/php:7.4-fpm-base
 
-      - name: [7.4][newrelic] Build and push Docker image
+      - name: "[7.4][newrelic] Build and push Docker image"
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: 7.4
@@ -40,7 +40,7 @@ jobs:
           build-args: |
             NEW_RELIC_AGENT_VERSION=9.18.1.303
 
-      - name: [7.4][dev] Build and push Docker image
+      - name: "[7.4][dev] Build and push Docker image"
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: 7.4
