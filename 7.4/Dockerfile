@@ -2,7 +2,6 @@ FROM php:7.4-fpm-alpine AS min
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
-VOLUME /usr/local/etc/php/php.ini
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies
     build-base \
@@ -31,7 +30,6 @@ FROM base AS newrelic
 ARG NEW_RELIC_AGENT_VERSION
 #ARG NEW_RELIC_LICENSE_KEY
 #ARG NEW_RELIC_APPNAME
-VOLUME /usr/local/etc/php/conf.d/newrelic.ini
 RUN apk --update add --no-cache \
     # required by newrelic agent
     libstdc++ gcompat
@@ -51,7 +49,6 @@ RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VE
 FROM base AS dev
 ARG COMPOSER_VERSION=2.1.12
 COPY config/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-VOLUME /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies 
     build-base \
