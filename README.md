@@ -16,6 +16,11 @@ Get a shell:
 docker run --rm -it -v ${PWD}:/app jopplt/php:7.4-fpm-min sh
 ```
 
+Custom `php.ini` configuration?:
+```
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/php.ini:/usr/local/etc/php/php.ini jopplt/php:7.4-fpm-min sh
+```
+
 ### `7.4-fpm-dev`: PHP 7.4 fpm for development purposes
 ```
 docker pull jopplt/php:7.4-fpm-dev
@@ -35,6 +40,11 @@ docker run --rm -it -v ${PWD}:/app jopplt/php:7.4-fpm-dev bash
 Install composer dependencies on current folder (with ssh keys):
 ```
 docker run --rm -v ${PWD}:/app -v ~/.ssh:/root/.ssh jopplt/php:7.4-fpm-dev composer install
+```
+
+Custom `xdebug.ini` configuration?:
+```
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:7.4-fpm-dev bash
 ```
 
 ### `7.4-fpm-newrelic`: PHP 7.4 fpm with Newrelic Agent

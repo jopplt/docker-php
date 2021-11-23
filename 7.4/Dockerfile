@@ -2,6 +2,7 @@ FROM php:7.4-fpm-alpine AS min
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
+VOLUME /usr/local/etc/php/php.ini
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies
     build-base \
@@ -50,6 +51,7 @@ RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VE
 FROM base AS dev
 ARG COMPOSER_VERSION=2.1.12
 COPY config/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+VOLUME /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies 
     build-base \
