@@ -7,12 +7,17 @@ RUN apk --update add --no-cache --virtual .build-deps \
     build-base \
     gcc \
     autoconf \
+    zlib-dev libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev \
     # Required extensions
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
     mysqli \
     pdo \
     pdo_mysql \
     opcache \
+    # Additional extensions (image processing)
+    exif \
+    gd \
     && pecl install -o -f redis \
     && docker-php-ext-enable redis \
     # Cleanup
