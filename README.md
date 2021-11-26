@@ -9,9 +9,6 @@ docker pull jopplt/php:7.4-fpm-min
 Includes the following extensions:
 * `pdo_mysql`
 * `opcache`
-* `redis` (pecl pkg)
-* `gd`
-* `exif`
 
 Get a shell:
 ```
