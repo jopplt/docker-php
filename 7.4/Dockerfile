@@ -9,6 +9,7 @@ RUN docker-php-ext-install -j$(nproc) \
     opcache
 
 FROM min AS base
+ARG COMPOSER_VERSION=2.1.12
 RUN apk --update add --no-cache --virtual .build-deps \
     build-base \
     autoconf \
@@ -24,6 +25,8 @@ RUN apk --update add --no-cache --virtual .build-deps \
     gd \
     && pecl install -o -f redis \
     && docker-php-ext-enable redis \
+    # Composer
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     # Cleanup
     && apk del .build-deps
 
@@ -38,7 +41,6 @@ RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VE
     && rm -rf /tmp/newrelic-php5-* /tmp/nrinstall*
 
 FROM base AS dev
-ARG COMPOSER_VERSION=2.1.12
 COPY config/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 RUN apk --update add --no-cache --virtual .build-deps \
     # Build dependencies 
@@ -51,7 +53,5 @@ RUN apk --update add --no-cache --virtual .build-deps \
     sqlite \
     && pecl install \
     xdebug \
-    # Composer
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     # Cleanup
     && apk del .build-deps
