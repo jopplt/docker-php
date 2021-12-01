@@ -24,7 +24,10 @@ RUN apk --update add --no-cache --virtual .build-deps \
     exif \
     gd \
     && pecl install -o -f redis \
-    && docker-php-ext-enable redis \
+    && docker-php-ext-enable \
+    redis \
+    exif \
+    gd \
     # Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     # Cleanup
