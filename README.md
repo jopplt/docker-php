@@ -9,6 +9,8 @@ docker pull jopplt/php:7.4-fpm-min
 Includes the following extensions:
 * `pdo_mysql`
 * `opcache`
+* `exif`
+* `gd`
 
 Get a shell:
 ```
@@ -57,4 +59,13 @@ Requirements:
 
 ```
 docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:7.4-fpm-newrelic
+```
+
+## Local build & run
+
+```
+docker build --tag php:7.4-fpm-dev 7.4
+```
+```
+docker run --rm -it -v ${PWD}:/app php:7.4-fpm-dev bash
 ```
