@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine AS min
+FROM php:7.4-fpm-alpine3.13 AS min
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
@@ -34,7 +34,7 @@ RUN apk --update add --no-cache --virtual .build-deps \
     && apk del .build-deps
 
 FROM base AS newrelic
-ARG NEW_RELIC_AGENT_VERSION
+ARG NEW_RELIC_AGENT_VERSION=9.18.1.303
 RUN apk --update add --no-cache libstdc++ gcompat
 
 RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VERSION}/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux.tar.gz | tar -C /tmp -zx \
