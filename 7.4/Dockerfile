@@ -54,6 +54,7 @@ RUN apk --update add --no-cache --virtual .build-deps \
     # Dev packages
     php7-pecl-xdebug \
     sqlite \
+    mysql-client \
     && pecl install \
     xdebug \
     # Cleanup
