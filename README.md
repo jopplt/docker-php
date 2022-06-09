@@ -1,5 +1,5 @@
 # docker-php
-PHP docker image for php/mysql developers
+PHP docker image for php/mysql developers. 
 Link to DockerHub: https://hub.docker.com/r/jopplt/php/tags
 
 ## Tags
