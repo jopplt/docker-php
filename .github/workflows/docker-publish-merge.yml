@@ -17,6 +17,7 @@ jobs:
             tags: |
               jopplt/php:7.4-fpm-min
             build-args: ""
+            platforms: linux/amd64,linux/arm64,linux/ppc64le
           - name: "[7.4][newrelic]"
             target: "newrelic"
             context: 7.4
@@ -24,12 +25,36 @@ jobs:
               jopplt/php:7.4-fpm-newrelic
             build-args: |
               NEW_RELIC_AGENT_VERSION=9.18.1.303
+            platforms: linux/amd64,linux/arm64,linux/ppc64le
           - name: "[7.4][dev]"
             target: "dev"
             context: 7.4
             tags: |
               jopplt/php:7.4-fpm-dev
             build-args: ""
+            platforms: linux/amd64,linux/arm64,linux/ppc64le
+          - name: "[8.2][min]"
+            target: "min"
+            context: 8.2
+            tags: |
+              jopplt/php:8.2-fpm-min
+            build-args: ""
+            platforms: linux/amd64,linux/arm64
+          - name: "[8.2][newrelic]"
+            target: "newrelic"
+            context: 8.2
+            tags: |
+              jopplt/php:8.2-fpm-newrelic
+            build-args: |
+              NEW_RELIC_AGENT_VERSION=9.18.1.303
+            platforms: linux/amd64,linux/arm64
+          - name: "[8.2][dev]"
+            target: "dev"
+            context: 8.2
+            tags: |
+              jopplt/php:8.2-fpm-dev
+            build-args: ""
+            platforms: linux/amd64,linux/arm64
       fail-fast: true
     runs-on: ubuntu-18.04
     steps:
@@ -52,7 +77,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: ${{ matrix.image.context }}
           target: ${{ matrix.image.target }}
-          platforms: linux/amd64,linux/arm64,linux/ppc64le
+          platforms: ${{ matrix.image.platforms }}
           push: true
           tags: ${{ matrix.image.tags }}
           build-args: ${{ matrix.image.build-args }}
