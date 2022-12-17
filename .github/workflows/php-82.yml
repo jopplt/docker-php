@@ -1,8 +1,10 @@
-name: Build and publish Docker images
+name: PHP 8.2
 
 on:
   push:
     branches: [ main ]
+    paths:
+      - 8.2/**
   release:
     types: [ published ]
 
@@ -11,28 +13,6 @@ jobs:
     strategy:
       matrix:
         image:
-          - name: "[7.4][min]"
-            target: "min"
-            context: 7.4
-            tags: |
-              jopplt/php:7.4-fpm-min
-            build-args: ""
-            platforms: linux/amd64,linux/arm64,linux/ppc64le
-          - name: "[7.4][newrelic]"
-            target: "newrelic"
-            context: 7.4
-            tags: |
-              jopplt/php:7.4-fpm-newrelic
-            build-args: |
-              NEW_RELIC_AGENT_VERSION=9.18.1.303
-            platforms: linux/amd64,linux/arm64,linux/ppc64le
-          - name: "[7.4][dev]"
-            target: "dev"
-            context: 7.4
-            tags: |
-              jopplt/php:7.4-fpm-dev
-            build-args: ""
-            platforms: linux/amd64,linux/arm64,linux/ppc64le
           - name: "[8.2][min]"
             target: "min"
             context: 8.2
