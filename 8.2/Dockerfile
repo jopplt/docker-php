@@ -37,7 +37,6 @@ RUN apk --update add --no-cache --virtual .build-deps \
 # FROM base AS newrelic
 # ARG NEW_RELIC_AGENT_VERSION=10.4.0.316
 # RUN apk --update add --no-cache libstdc++ gcompat
-
 # RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VERSION}/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux-musl.tar.gz | tar -C /tmp -zx \
 #     && export NR_INSTALL_USE_CP_NOT_LN=1 \
 #     && export NR_INSTALL_SILENT=1 \
