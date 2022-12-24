@@ -20,6 +20,13 @@ jobs:
               jopplt/php:8.2-fpm-min
             build-args: ""
             platforms: linux/amd64,linux/arm64
+          - name: "[8.2][base]"
+            target: "base"
+            context: 8.2
+            tags: |
+              jopplt/php:8.2-fpm-base
+            build-args: ""
+            platforms: linux/amd64,linux/arm64
           # - name: "[8.2][newrelic]"
           #   target: "newrelic"
           #   context: 8.2
