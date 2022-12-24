@@ -33,6 +33,7 @@ RUN apk --update add --no-cache --virtual .build-deps \
     # Cleanup
     && apk del .build-deps
 
+
 ## Waiting for newrelic support for PHP 8.2 ...
 # FROM base AS newrelic
 # ARG NEW_RELIC_AGENT_VERSION=10.4.0.316
