@@ -9,14 +9,14 @@ RUN docker-php-ext-install -j$(nproc) \
     opcache
 
 FROM min AS base
-ARG COMPOSER_VERSION=2.4.4
+ARG COMPOSER_VERSION=2.5.4
 RUN apk --update add --no-cache --virtual .build-deps \
     build-base \
     autoconf \
     # Base packages
     && apk --update add --no-cache \
     bash \
-    npm \
+    nodejs \
     freetype-dev libpng-dev libjpeg-turbo-dev \
     # Additional extensions
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -32,7 +32,6 @@ RUN apk --update add --no-cache --virtual .build-deps \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     # Cleanup
     && apk del .build-deps
-
 
 ## Waiting for newrelic support for PHP 8.2 ...
 # FROM base AS newrelic
