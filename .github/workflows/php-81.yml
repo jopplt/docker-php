@@ -27,14 +27,14 @@ jobs:
               jopplt/php:8.1-fpm-base
             build-args: ""
             platforms: linux/amd64,linux/arm64
-          # - name: "[8.1][newrelic]"
-          #   target: "newrelic"
-          #   context: 8.1
-          #   tags: |
-          #     jopplt/php:8.1-fpm-newrelic
-          #   build-args: |
-          #     NEW_RELIC_AGENT_VERSION=9.18.1.303
-          #   platforms: linux/amd64,linux/arm64
+          - name: "[8.1][newrelic]"
+            target: "newrelic"
+            context: 8.1
+            tags: |
+              jopplt/php:8.1-fpm-newrelic
+            build-args: |
+              NEW_RELIC_AGENT_VERSION=10.7.0.319
+            platforms: linux/amd64,linux/arm64
           - name: "[8.1][dev]"
             target: "dev"
             context: 8.1
