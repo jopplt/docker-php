@@ -33,15 +33,14 @@ RUN apk --update add --no-cache --virtual .build-deps \
     # Cleanup
     && apk del .build-deps
 
-## Waiting for newrelic support for PHP 8.2 ...
-# FROM base AS newrelic
-# ARG NEW_RELIC_AGENT_VERSION=10.4.0.316
-# RUN apk --update add --no-cache libstdc++ gcompat
-# RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VERSION}/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux-musl.tar.gz | tar -C /tmp -zx \
-#     && export NR_INSTALL_USE_CP_NOT_LN=1 \
-#     && export NR_INSTALL_SILENT=1 \
-#     && /tmp/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux/newrelic-install install \
-#     && rm -rf /tmp/newrelic-php5-* /tmp/nrinstall*
+FROM base AS newrelic
+ARG NEW_RELIC_AGENT_VERSION=10.7.0.319
+ARG NR_INSTALL_USE_CP_NOT_LN=1
+ARG NR_INSTALL_SILENT=1
+RUN apk --update add --no-cache libstdc++ gcompat
+RUN curl -L https://download.newrelic.com/php_agent/archive/${NEW_RELIC_AGENT_VERSION}/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux-musl.tar.gz | tar -C $HOME -zx \
+ && $HOME/newrelic-php5-${NEW_RELIC_AGENT_VERSION}-linux-musl/newrelic-install install \
+ && rm -rf $HOME/newrelic-php5-* $HOME/nrinstall*
 
 FROM base AS dev
 COPY config/xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
