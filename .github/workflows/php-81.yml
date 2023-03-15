@@ -35,7 +35,7 @@ jobs:
               jopplt/php:8.1-fpm-newrelic
             build-args: |
               NEW_RELIC_AGENT_VERSION=10.7.0.319
-            platforms: linux/amd64,linux/arm64
+            platforms: linux/amd64
           - name: "[8.1][dev]"
             target: "dev"
             context: 8.1
