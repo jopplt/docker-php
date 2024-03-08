@@ -46,7 +46,7 @@ jobs:
               COMPOSER_VERSION=2.7.1
             platforms: linux/amd64,linux/arm64
       fail-fast: true
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v2
       - name: Set up QEMU
