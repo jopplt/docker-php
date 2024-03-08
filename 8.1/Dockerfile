@@ -18,16 +18,17 @@ RUN apk --update add --no-cache --virtual .build-deps \
     bash \
     npm \
     freetype-dev libpng-dev libjpeg-turbo-dev \
+    icu-dev \
     # Additional extensions
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) \
     exif \
     gd \
+    intl \
+    bcmath \
     && pecl install -o -f redis \
     && docker-php-ext-enable \
     redis \
-    exif \
-    gd \
     # Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} \
     # Cleanup

@@ -4,9 +4,9 @@ PHP docker image for php/mysql developers.
 Link to DockerHub: https://hub.docker.com/r/jopplt/php/tags
 
 ## Tags
-### `7.4-fpm-min`: Minimal PHP 7.4 fpm
+### `8.2-fpm-min`: Minimal PHP 8.2 fpm
 ```
-docker pull jopplt/php:7.4-fpm-min
+docker pull jopplt/php:8.2-fpm-min
 ```
 Includes the following extensions:
 * `pdo_mysql`
@@ -16,43 +16,42 @@ Includes the following extensions:
 
 Get a shell:
 ```
-docker run --rm -it -v ${PWD}:/app jopplt/php:7.4-fpm-min sh
+docker run --rm -it -v ${PWD}:/app jopplt/php:8.2-fpm-min sh
 ```
 
 Custom `php.ini` configuration?:
 ```
-docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/php.ini:/usr/local/etc/php/php.ini jopplt/php:7.4-fpm-min sh
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/php.ini:/usr/local/etc/php/php.ini jopplt/php:8.2-fpm-min sh
 ```
 
-### `7.4-fpm-dev`: PHP 7.4 fpm for development purposes
+### `8.2-fpm-dev`: PHP 8.2 fpm for development purposes
 ```
-docker pull jopplt/php:7.4-fpm-dev
+docker pull jopplt/php:8.2-fpm-dev
 ```
 Includes:
 * composer
 * xdebug
 * sqlite
 * bash
-* npm
 
 Get a shell:
 ```
-docker run --rm -it -v ${PWD}:/app jopplt/php:7.4-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app jopplt/php:8.2-fpm-dev bash
 ```
 
 Install composer dependencies on current folder (with ssh keys):
 ```
-docker run --rm -v ${PWD}:/app -v ~/.ssh:/root/.ssh jopplt/php:7.4-fpm-dev composer install
+docker run --rm -v ${PWD}:/app -v ~/.ssh:/root/.ssh jopplt/php:8.2-fpm-dev composer install
 ```
 
 Custom `xdebug.ini` configuration?:
 ```
-docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:7.4-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:8.2-fpm-dev bash
 ```
 
-### `7.4-fpm-newrelic`: PHP 7.4 fpm with Newrelic Agent
+### `8.2-fpm-newrelic`: PHP 8.2 fpm with Newrelic Agent
 ```
-docker pull jopplt/php:7.4-fpm-newrelic
+docker pull jopplt/php:8.2-fpm-newrelic
 ```
 
 Requirements:
@@ -60,14 +59,14 @@ Requirements:
 * `newrelic.ini` configuration
 
 ```
-docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:7.4-fpm-newrelic
+docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:8.2-fpm-newrelic
 ```
 
 ## Local build & run
 
 ```
-docker build --tag php:7.4-fpm-dev 7.4
+docker build --tag php:8.2-fpm-dev 8.2
 ```
 ```
-docker run --rm -it -v ${PWD}:/app php:7.4-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app php:8.2-fpm-dev bash
 ```

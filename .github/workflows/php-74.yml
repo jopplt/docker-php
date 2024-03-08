@@ -21,20 +21,29 @@ jobs:
               jopplt/php:7.4-fpm-min
             build-args: ""
             platforms: linux/amd64,linux/arm64,linux/ppc64le
+          - name: "[7.3][base]"
+            target: "base"
+            context: 7.4
+            tags: |
+              jopplt/php:7.4-fpm-base
+            build-args: |
+              COMPOSER_VERSION=2.7.1
+            platforms: linux/amd64,linux/arm64,linux/ppc64le
           - name: "[7.4][newrelic]"
             target: "newrelic"
             context: 7.4
             tags: |
               jopplt/php:7.4-fpm-newrelic
             build-args: |
-              NEW_RELIC_AGENT_VERSION=9.18.1.303
+              NEW_RELIC_AGENT_VERSION=10.18.0.8
             platforms: linux/amd64,linux/arm64,linux/ppc64le
           - name: "[7.4][dev]"
             target: "dev"
             context: 7.4
             tags: |
               jopplt/php:7.4-fpm-dev
-            build-args: ""
+            build-args: |
+              COMPOSER_VERSION=2.7.1
             platforms: linux/amd64,linux/arm64,linux/ppc64le
       fail-fast: true
     runs-on: ubuntu-18.04
