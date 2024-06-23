@@ -1,4 +1,4 @@
-FROM php:8.3.8-fpm-alpine3.20 AS base
+FROM php:8.3.8-fpm-alpine3.19 AS base
 ARG COMPOSER_VERSION=2.7.7
 WORKDIR /app
 VOLUME /app
