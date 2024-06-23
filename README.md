@@ -58,19 +58,6 @@ Custom `xdebug.ini` configuration?:
 docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:8.3-fpm-dev bash
 ```
 
-### `8.3-fpm-newrelic`: PHP 8.3 fpm with Newrelic Agent
-```
-docker pull jopplt/php:8.3-fpm-newrelic
-```
-
-Requirements:
-* Newrelic daemon running in a separate container. Please refer to [docs.newrelic.com](https://docs.newrelic.com/docs/apm/agents/php-agent/advanced-installation/docker-other-container-environments-install-php-agent/) for more information
-* `newrelic.ini` configuration
-
-```
-docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:8.3-fpm-newrelic
-```
-
 ## Local build & run
 
 ```
