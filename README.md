@@ -4,54 +4,63 @@ PHP docker image for php/mysql developers.
 Link to DockerHub: https://hub.docker.com/r/jopplt/php/tags
 
 ## Tags
-### `8.2-fpm-min`: Minimal PHP 8.2 fpm
+### `8.3-fpm-base`: Base image for PHP development
 ```
-docker pull jopplt/php:8.2-fpm-min
+docker pull jopplt/php:8.3-fpm-base
 ```
+Bundled with:
+* Composer
+* Node
+
 Includes the following extensions:
-* `pdo_mysql`
-* `opcache`
 * `exif`
 * `gd`
+* `intl`
+* `mysqli`
+* `pdo`
+* `pdo_mysql`
+* `opcache`
+* `zip`
 
 Get a shell:
 ```
-docker run --rm -it -v ${PWD}:/app jopplt/php:8.2-fpm-min sh
+docker run --rm -it -v ${PWD}:/app jopplt/php:8.3-fpm-base sh
 ```
 
 Custom `php.ini` configuration?:
 ```
-docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/php.ini:/usr/local/etc/php/php.ini jopplt/php:8.2-fpm-min sh
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/php.ini:/usr/local/etc/php/php.ini jopplt/php:8.3-fpm-base sh
 ```
 
-### `8.2-fpm-dev`: PHP 8.2 fpm for development purposes
+### `8.3-fpm-dev`: Base image with additional tools for local development
 ```
-docker pull jopplt/php:8.2-fpm-dev
+docker pull jopplt/php:8.3-fpm-dev
 ```
-Includes:
-* composer
-* xdebug
-* sqlite
-* bash
+Bundled with:
+* Composer
+* Node
+* Xdebug
+* Sqlite
+* Bash
 
 Get a shell:
 ```
-docker run --rm -it -v ${PWD}:/app jopplt/php:8.2-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app jopplt/php:8.3-fpm-dev bash
 ```
 
 Install composer dependencies on current folder (with ssh keys):
 ```
-docker run --rm -v ${PWD}:/app -v ~/.ssh:/root/.ssh jopplt/php:8.2-fpm-dev composer install
+docker run --rm -v ${PWD}:/app -v ~/.ssh:/root/.ssh jopplt/php:8.3-fpm-dev composer install
 ```
 
 Custom `xdebug.ini` configuration?:
 ```
-docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:8.2-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app -v ${PWD}/config/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini jopplt/php:8.3-fpm-dev bash
 ```
 
-### `8.2-fpm-newrelic`: PHP 8.2 fpm with Newrelic Agent
+### `8.3-fpm-newrelic`: PHP 8.3 fpm with Newrelic Agent
 ```
-docker pull jopplt/php:8.2-fpm-newrelic
+docker pull jopplt/php:8.3-fpm-newrelic
 ```
 
 Requirements:
@@ -59,14 +68,14 @@ Requirements:
 * `newrelic.ini` configuration
 
 ```
-docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:8.2-fpm-newrelic
+docker run -d -v ${PWD}:/app -v ${PWD}/config/newrelic.ini:/usr/local/etc/php/conf.d/newrelic.ini jopplt/php:8.3-fpm-newrelic
 ```
 
 ## Local build & run
 
 ```
-docker build --tag php:8.2-fpm-dev 8.2
+docker build --tag php:8.3-fpm-dev 8.3
 ```
 ```
-docker run --rm -it -v ${PWD}:/app php:8.2-fpm-dev bash
+docker run --rm -it -v ${PWD}:/app php:8.3-fpm-dev bash
 ```
