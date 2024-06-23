@@ -9,7 +9,7 @@ RUN apk --update add --no-cache --virtual .build-deps \
     # Base packages
     && apk --update add --no-cache \
     bash \
-    nodejs \
+    nodejs npm \
     freetype-dev libpng-dev libjpeg-turbo-dev \
     icu-dev \
     libzip-dev zip \

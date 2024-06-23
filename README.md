@@ -11,6 +11,7 @@ docker pull jopplt/php:8.3-fpm-base
 Bundled with:
 * Composer
 * Node
+* NPM
 
 Includes the following extensions:
 * `exif`
