@@ -1,4 +1,4 @@
-FROM php:8.4.5-fpm-alpine3.21 AS base
+FROM php:8.4.11-fpm-alpine3.21 AS base
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
@@ -30,9 +30,13 @@ RUN apk --update add --no-cache --virtual .build-deps \
     opcache \
     pcntl \
     zip \
-    && pecl install -o -f redis \
+    && pecl install -o -f \
+    redis \
+    apcu \
     && docker-php-ext-enable \
     redis \
+    apcu \
+    && pecl clear-cache \
     # Cleanup
     && apk del .build-deps
 
