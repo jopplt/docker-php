@@ -1,4 +1,4 @@
-FROM php:8.5.0-alpine3.22 AS base
+FROM php:8.5.10-alpine3.24 AS base
 WORKDIR /app
 VOLUME /app
 COPY config/php.ini /usr/local/etc/php/php.ini
